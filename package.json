@@ -1,0 +1,40 @@
+{
+  "name": "runes",
+  "version": "0.1.0",
+  "description": "Unicode-aware JS string splitting",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint . && mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dotcypress/runes.git"
+  },
+  "keywords": [
+    "unicode",
+    "runes",
+    "split",
+    "split string"
+  ],
+  "author": "Vitaly Domnikov <dotcypress@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dotcypress/runes/issues"
+  },
+  "homepage": "https://github.com/dotcypress/runes#readme",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-config-standard": "^5.3.1",
+    "eslint-plugin-mocha": "^4.3.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
+  }
+}
