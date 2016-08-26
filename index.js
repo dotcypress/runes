@@ -1,18 +1,20 @@
 'use strict'
 
-const HIGH_SURROGATE_START = 0xD800
-const HIGH_SURROGATE_END = 0xDBFF
+const HIGH_SURROGATE_START = 0xd800
+const HIGH_SURROGATE_END = 0xdbff
 
-const LOW_SURROGATE_START = 0xDC00
+const LOW_SURROGATE_START = 0xdc00
 
-const REGIONAL_INDICATOR_START = 0x1F1E6
-const REGIONAL_INDICATOR_END = 0x1F1FF
+const REGIONAL_INDICATOR_START = 0x1f1e6
+const REGIONAL_INDICATOR_END = 0x1f1ff
 
 const FITZPATRICK_MODIFIER_START = 0x1f3fb
 const FITZPATRICK_MODIFIER_END = 0x1f3ff
 
-const VARIATION_MODIFIER_START = 0xFE00
-const VARIATION_MODIFIER_END = 0xFE0F
+const VARIATION_MODIFIER_START = 0xfe00
+const VARIATION_MODIFIER_END = 0xfe0f
+
+const ZWJ = 0x200d
 
 function runes (string) {
   if (typeof string !== 'string') {
@@ -20,11 +22,16 @@ function runes (string) {
   }
   const result = []
   let i = 0
-  let increment
+  let increment = 0
   while (i < string.length) {
-    increment = nextUnits(i, string)
+    increment += nextUnits(i + increment, string)
+    if (isZeroWidthJoiner(string[i + increment])) {
+      increment++
+      continue
+    }
     result.push(string.substring(i, i + increment))
     i += increment
+    increment = 0
   }
   return result
 }
@@ -37,7 +44,6 @@ function runes (string) {
 // Variations: 2 code units
 function nextUnits (i, string) {
   const current = string[i]
-
   // If we have variation selector at next position, we can handle it as pair
   if (isVariationSelector(string[i + 1])) {
     return 2
@@ -88,6 +94,10 @@ function isFitzpatrickModifier (string) {
 
 function isVariationSelector (string) {
   return typeof string === 'string' && betweenInclusive(string.charCodeAt(0), VARIATION_MODIFIER_START, VARIATION_MODIFIER_END)
+}
+
+function isZeroWidthJoiner (string) {
+  return typeof string === 'string' && string.charCodeAt(0) === ZWJ
 }
 
 function codePointFromSurrogatePair (pair) {

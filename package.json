@@ -1,10 +1,10 @@
 {
   "name": "runes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Unicode-aware JS string splitting",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && mocha test"
+    "test": "eslint . && ava test"
   },
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "unicode",
+    "emoji",
     "runes",
     "split",
     "split string"
@@ -29,12 +30,12 @@
     "index.js"
   ],
   "devDependencies": {
+    "ava": "^0.16.0",
     "eslint": "^3.3.1",
-    "eslint-config-standard": "^5.3.1",
-    "eslint-plugin-mocha": "^4.3.0",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-ava": "^3.0.0",
     "eslint-plugin-promise": "^2.0.1",
     "eslint-plugin-standard": "^2.0.0",
-    "mocha": "^3.0.2",
     "should": "^11.1.0"
   }
 }

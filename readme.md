@@ -2,7 +2,7 @@
 [![Build Status](https://img.shields.io/travis/dotcypress/runes.svg?branch=master&style=flat-square)](https://travis-ci.org/dotcypress/runes)
 [![NPM Version](https://img.shields.io/npm/v/runes.svg?style=flat-square)](https://www.npmjs.com/package/runes)
 
-Unicode-aware JS string splitting
+Unicode-aware JS string splitting with full Emoji support.
 
 Split a string into its constituent characters, without munging emoji and other non-BMP code points.
 
@@ -19,13 +19,22 @@ $ npm install runes
 ## Example
   
 ```js
-
 const runes = require('runes')
 
-const example = 'Emoji 🤖'
+// Standard String.split
+'♥️'.split('') => ['♥', '️']
+'Emoji 🤖'.split('') => ['E', 'm', 'o', 'j', 'i', ' ', '�', '�']
+'👩‍👩‍👧‍👦'.split('') => ['�', '�', '‍', '�', '�', '‍', '�', '�', '‍', '�', '�']
 
-example.split('') // ["E", "m", "o", "j", "i", " ", "�", "�"]
-runes(example)    // ["E", "m", "o", "j", "i", " ", "🤖"]
+// ES6 string iterator
+[...'♥️'] => [ '♥', '️' ]
+[...'Emoji 🤖'] => [ 'E', 'm', 'o', 'j', 'i', ' ', '🤖' ]
+[...'👩‍👩‍👧‍👦'] => [ '👩', '', '👩', '', '👧', '', '👦' ]
+
+// Runes
+runes('♥️') => ['♥️']
+runes('Emoji 🤖') => ['E', 'm', 'o', 'j', 'i', ' ', '🤖']
+runes('👩‍👩‍👧‍👦') => ['👩‍👩‍👧‍👦']
 
 ```
 
