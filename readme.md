@@ -2,7 +2,7 @@
 [![NPM Version](https://img.shields.io/npm/v/runes.svg?style=flat-square)](https://www.npmjs.com/package/runes)
 [![Build Status](https://img.shields.io/travis/dotcypress/runes.svg?branch=master&style=flat-square)](https://travis-ci.org/dotcypress/runes)
 
-Unicode-aware JS string splitting with full Emoji support.
+> Unicode-aware JS string splitting with full Emoji support.
 
 Split a string into its constituent characters, without munging emoji and other non-BMP code points.
 
