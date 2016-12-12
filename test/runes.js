@@ -4,6 +4,7 @@ require('should')
 const test = require('ava')
 
 const runes = require('../')
+const substring = runes.substr
 
 test('✂️  Runes should handle emoji in middle', (t) => {
   runes('abc😤def').should.be.deepEqual(['a', 'b', 'c', '😤', 'd', 'e', 'f'])
@@ -102,4 +103,16 @@ test('✂️  Runes should throw for null and undefined', (t) => {
   (function () {
     runes()
   }).should.throw()
+})
+
+test('✂️  substring', (t) => {
+  substring('abc').should.be.deepEqual('abc')
+  substring('abc', 1).should.be.deepEqual('bc')
+  substring('abc', 0, 0).should.be.deepEqual('')
+  substring('abc', 6, 100).should.be.deepEqual('')
+  substring('👨‍👨‍👧‍👧').should.be.deepEqual('👨‍👨‍👧‍👧')
+  substring('a👨‍👨‍👧‍👧', 1).should.be.deepEqual('👨‍👨‍👧‍👧')
+  substring('abc👨‍👨‍👧‍👧abc', 3).should.be.deepEqual('👨‍👨‍👧‍👧abc')
+  substring('👨‍👨‍👧‍👧abc', 1).should.be.deepEqual('abc')
+  substring('👨‍👨‍👧‍👧abcd', 2).should.be.deepEqual('bcd')
 })

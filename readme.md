@@ -37,3 +37,16 @@ runes('Emoji 🤖') => ['E', 'm', 'o', 'j', 'i', ' ', '🤖']
 runes('👩‍👩‍👧‍👦') => ['👩‍👩‍👧‍👦']
 
 ```
+
+## Substring example
+
+```js
+const runes = require('runes')
+
+// String.substring
+'👨‍👨‍👧‍👧a'.substring(1) => '�‍👨‍👧‍👧a'
+
+// Runes
+runes.substring('👨‍👨‍👧‍👧a', 1) => 'a'
+
+```

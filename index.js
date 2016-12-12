@@ -110,4 +110,22 @@ function betweenInclusive (value, lower, upper) {
   return value >= lower && value <= upper
 }
 
+function substring (string, start, width) {
+  const chars = runes(string)
+  if (start === undefined) {
+    return string
+  }
+  if (start >= chars.length) {
+    return ''
+  }
+  const rest = chars.length - start
+  const stringWidth = width === undefined ? rest : width
+  let endIndex = start + stringWidth
+  if (endIndex > (start + rest)) {
+    endIndex = undefined
+  }
+  return chars.slice(start, endIndex).join('')
+}
+
 module.exports = runes
+module.exports.substr = substring
