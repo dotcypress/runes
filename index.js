@@ -43,7 +43,6 @@ function runes (string) {
 // Country flags: 4 code units (2 code points)
 // Variations: 2 code units
 function nextUnits (i, string) {
-  const current = string[i]
   // If we have variation selector at next position, we can handle it as pair
   if (isVariationSelector(string[i + 1])) {
     return 2
@@ -51,11 +50,11 @@ function nextUnits (i, string) {
 
   // If we don't have a value that is part of a surrogate pair, or we're at
   // the end, only take the value at i
-  if (!isFirstOfSurrogatePair(current) || i === string.length - 1) {
+  if (!isFirstOfSurrogatePair(string[i]) || i === string.length - 1) {
     return 1
   }
 
-  const currentPair = current + string[i + 1]
+  const currentPair = string[i] + string[i + 1]
   let nextPair = string.substring(i + 2, i + 5)
 
   // Country flags are comprised of two regional indicator symbols,
@@ -127,5 +126,26 @@ function substring (string, start, width) {
   return chars.slice(start, endIndex).join('')
 }
 
+function lenght (string) {
+  if (typeof string !== 'string') {
+    throw new Error('string cannot be undefined or null')
+  }
+  let result = 0
+  let i = 0
+  let increment = 0
+  while (i < string.length) {
+    increment += nextUnits(i + increment, string)
+    if (isZeroWidthJoiner(string[i + increment])) {
+      increment++
+      continue
+    }
+    result++
+    i += increment
+    increment = 0
+  }
+  return result
+}
+
 module.exports = runes
 module.exports.substr = substring
+module.exports.len = lenght

@@ -4,7 +4,8 @@
   "description": "Unicode-aware JS string splitting",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && ava test"
+    "test": "eslint . && ava test",
+    "perf": "node benchmark/"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
   ],
   "devDependencies": {
     "ava": "^0.17.0",
+    "benchmark": "^2.1.2",
     "eslint": "^3.9.1",
     "eslint-config-standard": "^6.0.0",
     "eslint-plugin-ava": "^4.0.0",

@@ -50,3 +50,16 @@ const runes = require('runes')
 runes.substring('👨‍👨‍👧‍👧a', 1) => 'a'
 
 ```
+
+## Length example
+
+```js
+const runes = require('runes')
+
+// String.substring
+'👨‍👨‍👧‍👧a'.length => 12
+
+// Runes
+runes.len('👨‍👨‍👧‍👧a') => 2
+
+```

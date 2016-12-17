@@ -5,6 +5,7 @@ const test = require('ava')
 
 const runes = require('../')
 const substring = runes.substr
+const length = runes.len
 
 test('✂️  Runes should handle emoji in middle', (t) => {
   runes('abc😤def').should.be.deepEqual(['a', 'b', 'c', '😤', 'd', 'e', 'f'])
@@ -115,4 +116,14 @@ test('✂️  substring', (t) => {
   substring('abc👨‍👨‍👧‍👧abc', 3).should.be.deepEqual('👨‍👨‍👧‍👧abc')
   substring('👨‍👨‍👧‍👧abc', 1).should.be.deepEqual('abc')
   substring('👨‍👨‍👧‍👧abcd', 2).should.be.deepEqual('bcd')
+})
+
+test('✂️  substring', (t) => {
+  length('abc').should.be.equal(3)
+  length('🎅🏻').should.be.equal(1)
+  length('👨‍👨‍👧‍👧').should.be.equal(1)
+  length('a👨‍👨‍👧‍👧').should.be.equal(2)
+  length('abc👨‍👨‍👧‍👧abc').should.be.equal(7)
+  length('👨‍👨‍👧‍👧abc').should.be.equal(4)
+  length('❤️abc').should.be.equal(4)
 })
