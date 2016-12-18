@@ -118,9 +118,9 @@ test('✂️  substring', (t) => {
   substring('👨‍👨‍👧‍👧abcd', 2).should.be.deepEqual('bcd')
 })
 
-test('✂️  substring', (t) => {
+test.only('✂️  substring', (t) => {
   length('abc').should.be.equal(3)
-  length('🎅🏻').should.be.equal(1)
+  length('abc👮🏿‍♀️').should.be.equal(4)
   length('👨‍👨‍👧‍👧').should.be.equal(1)
   length('a👨‍👨‍👧‍👧').should.be.equal(2)
   length('abc👨‍👨‍👧‍👧abc').should.be.equal(7)

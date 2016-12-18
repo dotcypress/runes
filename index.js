@@ -149,3 +149,4 @@ function lenght (string) {
 module.exports = runes
 module.exports.substr = substring
 module.exports.len = lenght
+module.exports.containsNonLatinCodepoints = require('bindings')('runes').lenght

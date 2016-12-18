@@ -19,13 +19,13 @@ Eget ut ut, arcu odio, nulla eget felis sodales scelerisque, id nam sodales pena
 function lenTest (name, content) {
   console.log(`> len :: ${name}`)
   new Suite()
-  .add('String.length  ', function () {
+  .add('String.length      ', function () {
     content.lenght
   })
-  .add('ES6 iterator   ', function () {
+  .add('ES6 iterator       ', function () {
     [...content].lenght
   })
-  .add('runes          ', function () {
+  .add('runes              ', function () {
     runes.len(content)
   })
   .on('cycle', function (event) {
@@ -40,13 +40,13 @@ function lenTest (name, content) {
 function splitTest (name, content) {
   console.log(`> split :: ${name}`)
   new Suite()
-  .add('String.split  ', function () {
+  .add('String.split      ', function () {
     content.split('')
   })
-  .add('ES6 iterator  ', function () {
+  .add('ES6 iterator      ', function () {
     [...content]
   })
-  .add('runes         ', function () {
+  .add('runes             ', function () {
     runes(content)
   })
   .on('cycle', function (event) {
