@@ -47,6 +47,6 @@ const runes = require('runes')
 '👨‍👨‍👧‍👧a'.substring(1) => '�‍👨‍👧‍👧a'
 
 // Runes
-runes.substring('👨‍👨‍👧‍👧a', 1) => 'a'
+runes.substr('👨‍👨‍👧‍👧a', 1) => 'a'
 
 ```
