@@ -25,6 +25,9 @@ function runes (string) {
   let increment = 0
   while (i < string.length) {
     increment += nextUnits(i + increment, string)
+    if (isVariationSelector(string[i + increment])) {
+      increment++
+    }
     if (isZeroWidthJoiner(string[i + increment])) {
       increment++
       continue
@@ -44,11 +47,6 @@ function runes (string) {
 // Variations: 2 code units
 function nextUnits (i, string) {
   const current = string[i]
-  // If we have variation selector at next position, we can handle it as pair
-  if (isVariationSelector(string[i + 1])) {
-    return 2
-  }
-
   // If we don't have a value that is part of a surrogate pair, or we're at
   // the end, only take the value at i
   if (!isFirstOfSurrogatePair(current) || i === string.length - 1) {
@@ -76,7 +74,6 @@ function nextUnits (i, string) {
   if (isFitzpatrickModifier(nextPair)) {
     return 4
   }
-
   return 2
 }
 
