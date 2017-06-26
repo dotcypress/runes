@@ -1,8 +1,8 @@
 # ✂️ Runes
-[![Build Status](https://img.shields.io/travis/dotcypress/runes.svg?branch=master&style=flat-square)](https://travis-ci.org/dotcypress/runes)
 [![NPM Version](https://img.shields.io/npm/v/runes.svg?style=flat-square)](https://www.npmjs.com/package/runes)
+[![Build Status](https://img.shields.io/travis/dotcypress/runes.svg?branch=master&style=flat-square)](https://travis-ci.org/dotcypress/runes)
 
-Unicode-aware JS string splitting with full Emoji support.
+> Unicode-aware JS string splitting with full Emoji support.
 
 Split a string into its constituent characters, without munging emoji and other non-BMP code points.
 
@@ -38,27 +38,15 @@ runes('👩‍👩‍👧‍👦') => ['👩‍👩‍👧‍👦']
 
 ```
 
-## License
+## Substring example
 
-The MIT License (MIT)
+```js
+const runes = require('runes')
 
-Copyright (c) 2016 Justin Sippel, Vitaly Domnikov
+// String.substring
+'👨‍👨‍👧‍👧a'.substring(1) => '�‍👨‍👧‍👧a'
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+// Runes
+runes.substr('👨‍👨‍👧‍👧a', 1) => 'a'
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+```

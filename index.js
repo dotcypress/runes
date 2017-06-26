@@ -25,6 +25,9 @@ function runes (string) {
   let increment = 0
   while (i < string.length) {
     increment += nextUnits(i + increment, string)
+    if (isVariationSelector(string[i + increment])) {
+      increment++
+    }
     if (isZeroWidthJoiner(string[i + increment])) {
       increment++
       continue
@@ -44,11 +47,6 @@ function runes (string) {
 // Variations: 2 code units
 function nextUnits (i, string) {
   const current = string[i]
-  // If we have variation selector at next position, we can handle it as pair
-  if (isVariationSelector(string[i + 1])) {
-    return 2
-  }
-
   // If we don't have a value that is part of a surrogate pair, or we're at
   // the end, only take the value at i
   if (!isFirstOfSurrogatePair(current) || i === string.length - 1) {
@@ -76,7 +74,6 @@ function nextUnits (i, string) {
   if (isFitzpatrickModifier(nextPair)) {
     return 4
   }
-
   return 2
 }
 
@@ -110,4 +107,22 @@ function betweenInclusive (value, lower, upper) {
   return value >= lower && value <= upper
 }
 
+function substring (string, start, width) {
+  const chars = runes(string)
+  if (start === undefined) {
+    return string
+  }
+  if (start >= chars.length) {
+    return ''
+  }
+  const rest = chars.length - start
+  const stringWidth = width === undefined ? rest : width
+  let endIndex = start + stringWidth
+  if (endIndex > (start + rest)) {
+    endIndex = undefined
+  }
+  return chars.slice(start, endIndex).join('')
+}
+
 module.exports = runes
+module.exports.substr = substring
