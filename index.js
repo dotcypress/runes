@@ -16,6 +16,24 @@ const VARIATION_MODIFIER_END = 0xfe0f
 
 const ZWJ = 0x200d
 
+const GRAPHEMS = [
+  0x0308, // ( ◌̈ ) COMBINING DIAERESIS
+  0x0937, // ( ष ) DEVANAGARI LETTER SSA
+  0x0937, // ( ष ) DEVANAGARI LETTER SSA
+  0x093F, // ( ि ) DEVANAGARI VOWEL SIGN I
+  0x093F, // ( ि ) DEVANAGARI VOWEL SIGN I
+  0x0BA8, // ( ந ) TAMIL LETTER NA
+  0x0BBF, // ( ி ) TAMIL VOWEL SIGN I
+  0x0BCD, // ( ◌்) TAMIL SIGN VIRAMA
+  0x0E31, // ( ◌ั ) THAI CHARACTER MAI HAN-AKAT
+  0x0E33, // ( ำ ) THAI CHARACTER SARA AM
+  0x0E40, // ( เ ) THAI CHARACTER SARA E
+  0x0E49, // ( เ ) THAI CHARACTER MAI THO
+  0x1100, // ( ᄀ ) HANGUL CHOSEONG KIYEOK
+  0x1161, // ( ᅡ ) HANGUL JUNGSEONG A
+  0x11A8 // ( ᆨ ) HANGUL JONGSEONG KIYEOK
+]
+
 function runes (string) {
   if (typeof string !== 'string') {
     throw new Error('string cannot be undefined or null')
@@ -25,6 +43,9 @@ function runes (string) {
   let increment = 0
   while (i < string.length) {
     increment += nextUnits(i + increment, string)
+    if (isGraphem(string[i + increment])) {
+      increment++
+    }
     if (isVariationSelector(string[i + increment])) {
       increment++
     }
@@ -91,6 +112,10 @@ function isFitzpatrickModifier (string) {
 
 function isVariationSelector (string) {
   return typeof string === 'string' && betweenInclusive(string.charCodeAt(0), VARIATION_MODIFIER_START, VARIATION_MODIFIER_END)
+}
+
+function isGraphem (string) {
+  return typeof string === 'string' && GRAPHEMS.indexOf(string.charCodeAt(0)) !== -1
 }
 
 function isZeroWidthJoiner (string) {
