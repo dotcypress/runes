@@ -98,6 +98,13 @@ test('✂️  Runes should handle 🏳️‍🌈', (t) => {
   t.deepEqual(runes('🏳️‍🌈'), ['🏳️‍🌈'])
 })
 
+test('✂️  Runes should handle extended grapheme clusters', (t) => {
+  t.deepEqual(runes('g̈'), ['g̈'])
+  t.deepEqual(runes(' ำ'), [' ำ'])
+  t.deepEqual(runes('நகரத்தில்'), ['ந', 'க', 'ர', 'த்', 'தி', 'ல்'])
+  t.deepEqual(runes('ม้าลายหกตั'), ['ม้', 'า', 'ล', 'า', 'ย', 'ห', 'ก', 'ตั'])
+})
+
 test('✂️  Runes should handle empty string', (t) => {
   t.deepEqual(runes(''), [])
 })
