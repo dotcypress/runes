@@ -94,6 +94,10 @@ test('✂️  Runes should handle country flags/regional indicator characters', 
   t.deepEqual(runes('🇦🇸'), ['🇦🇸'])
 })
 
+test('✂️  Runes should handle 3️⃣', (t) => {
+  t.deepEqual(runes('3️⃣'), ['3️⃣'])
+})
+
 test('✂️  Runes should handle 🏳️‍🌈', (t) => {
   t.deepEqual(runes('🏳️‍🌈'), ['🏳️‍🌈'])
 })
