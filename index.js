@@ -14,6 +14,9 @@ const FITZPATRICK_MODIFIER_END = 0x1f3ff
 const VARIATION_MODIFIER_START = 0xfe00
 const VARIATION_MODIFIER_END = 0xfe0f
 
+const DIACRITICAL_MARKS_START = 0x20d0
+const DIACRITICAL_MARKS_END = 0x20ff
+
 const ZWJ = 0x200d
 
 const GRAPHEMS = [
@@ -47,6 +50,9 @@ function runes (string) {
       increment++
     }
     if (isVariationSelector(string[i + increment])) {
+      increment++
+    }
+    if (isDiacriticalMark(string[i + increment])) {
       increment++
     }
     if (isZeroWidthJoiner(string[i + increment])) {
@@ -112,6 +118,10 @@ function isFitzpatrickModifier (string) {
 
 function isVariationSelector (string) {
   return typeof string === 'string' && betweenInclusive(string.charCodeAt(0), VARIATION_MODIFIER_START, VARIATION_MODIFIER_END)
+}
+
+function isDiacriticalMark (string) {
+  return typeof string === 'string' && betweenInclusive(string.charCodeAt(0), DIACRITICAL_MARKS_START, DIACRITICAL_MARKS_END)
 }
 
 function isGraphem (string) {
