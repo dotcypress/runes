@@ -1,6 +1,6 @@
 {
   "name": "runes",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Unicode-aware JS string splitting",
   "main": "index.js",
   "scripts": {
